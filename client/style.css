@@ -29,17 +29,19 @@ form input {
 }
 
 form button {
+
     width: 10%;
     margin-left: 2%;
-    background: rgb(130, 224, 255);
+    background-color: #80DEEA;
     border: none;
-    padding: 2%;
+    padding: 1.34%;
 }
 
 #messages {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    width: 75%;
 }
 
 #messages li {
@@ -57,4 +59,15 @@ form button {
 #username {
     width: 30%;
     top: 10%;
+}
+
+#sidenav {
+    width: 25%;
+    height: 90%;
+    margin-left: 75%;
+    float: left;
+    background-color: #80DEEA;
+    position: fixed;
+    top: 0;
+
 }

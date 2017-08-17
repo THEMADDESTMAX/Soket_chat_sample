@@ -20,11 +20,13 @@ app.get('/client/client.js', function (req, res) {
 io.on('connection', function (socket) {
     socket.on('disconnect', function () {
         io.emit('chat message', responceConstructor("System", "blue", `User ${socket.nickname || socket.id} left`));
+        io.emit('users_list', formatUsers());
     });
     socket.on('new_user', (msg) => {
         socket.nickname = msg;
         let system = responceConstructor("System", "blue", `New user ${socket.nickname} has connected`);
         io.emit('chat message', system);
+        io.emit('users_list', formatUsers());
         socket.on('chat message', function (msg) {
             // io.emit('chat message', `${socket.nickname}: ${msg}`);
             io.emit('chat message', responceConstructor(socket.nickname, "red", msg));
@@ -43,4 +45,14 @@ function responceConstructor(user, color, msg) {
         msg: msg
     };
     return result;
+}
+
+function formatUsers() {
+    let users = io.sockets.sockets;
+    let resArr = [];
+    for (let key in users) {
+        if (users[key].nickname)
+            resArr.push(users[key].nickname);
+    }
+    return resArr;
 }

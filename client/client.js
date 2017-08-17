@@ -15,4 +15,12 @@ $(function () {
         $('#messages').append($('<li>').html("<b style='color: " + msg.color + "'>" + msg.user + "</b>: " + msg.msg));
         window.scrollTo(0, document.body.scrollHeight);
     });
+
+    socket.on('users_list', function (msg) {
+        $('#users').empty();
+        msg.forEach(function (l) {
+            $('#users').append($('<li>').html(l));
+        })
+
+    });
 });
